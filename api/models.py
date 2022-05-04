@@ -46,6 +46,32 @@ class EducationSignUp(models.Model):
         return self.fullName
 
 
+class HealthcareSignUp(models.Model):
+    fullName = models.CharField(max_length=250, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    isFree = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('-timestamp',)
+
+    def __str__(self):
+        return self.fullName
+
+
+class ManufacturingSignUp(models.Model):
+    fullName = models.CharField(max_length=250, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    isFree = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('-timestamp',)
+
+    def __str__(self):
+        return self.fullName
+
+
 class ContactEmail(models.Model):
     fullName = models.CharField(max_length=250, blank=True, null=True)
     companyName = models.CharField(max_length=250, blank=True, null=True)

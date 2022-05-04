@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation
+from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation, ManufacturingSignUp, HealthcareSignUp
 
 
 class AgricultureSignUpSerializer(serializers.ModelSerializer):
@@ -17,6 +17,18 @@ class RetailSignUpSerializer(serializers.ModelSerializer):
 class EducationSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = EducationSignUp
+        fields = '__all__'
+
+
+class HealthcareSignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthcareSignUp
+        fields = '__all__'
+
+
+class ManufacturingSignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManufacturingSignUp
         fields = '__all__'
 
 

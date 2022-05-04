@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation
+from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation, ManufacturingSignUp, HealthcareSignUp
 
 
 @admin.register(AgricultureSignUp)
@@ -16,6 +16,18 @@ class RetailSignUpAdmin(admin.ModelAdmin):
 
 @admin.register(EducationSignUp)
 class EducationSignUpAdmin(admin.ModelAdmin):
+    search_fields = ("fullName",)
+    list_display = ("fullName", "email", "timestamp", "isFree")
+
+
+@admin.register(HealthcareSignUp)
+class HealthcareSignUpAdmin(admin.ModelAdmin):
+    search_fields = ("fullName",)
+    list_display = ("fullName", "email", "timestamp", "isFree")
+
+
+@admin.register(ManufacturingSignUp)
+class ManufacturingSignUpAdmin(admin.ModelAdmin):
     search_fields = ("fullName",)
     list_display = ("fullName", "email", "timestamp", "isFree")
 

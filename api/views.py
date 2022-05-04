@@ -7,8 +7,8 @@ from django.core.mail import send_mail
 import datetime
 
 
-from .serializers import AgricultureSignUpSerializer, RetailSignUpSerializer, EducationSignUpSerializer, ContactEmailSerializer, EnquiryEmailSerializer, NewsletterSerializer, QuotationSerializer
-from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation
+from .serializers import AgricultureSignUpSerializer, RetailSignUpSerializer, EducationSignUpSerializer, ContactEmailSerializer, EnquiryEmailSerializer, NewsletterSerializer, QuotationSerializer, HealthcareSignUpSerializer, ManufacturingSignUpSerializer
+from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation, HealthcareSignUp, ManufacturingSignUp
 
 
 @api_view(['POST'])
@@ -56,6 +56,44 @@ def EduSignUpEmail(request):
     fullName = data.get('fullName')
     email = data.get('email')
     body = 'New Sign Up \n Education \n\n ' + fullName + '\n' + email
+    if serializer.is_valid():
+        send_mail('SmartFarma SignUp HURRY', body, 'malingreatsdev@gmail.com',
+                  ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
+        # send_mail('', body , 'fastdcomga@gmail.com',
+        #           ['fastdcomga@gmail.com'], fail_silently=False)
+        serializer.save()
+
+    else:
+        return Response('serializer not valid')
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def HealthcareSignUpEmail(request):
+    serializer = HealthcareSignUpSerializer(data=request.data)
+    data = request.data
+    fullName = data.get('fullName')
+    email = data.get('email')
+    body = 'New Sign Up \n Healthcare \n\n ' + fullName + '\n' + email
+    if serializer.is_valid():
+        send_mail('SmartFarma SignUp HURRY', body, 'malingreatsdev@gmail.com',
+                  ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
+        # send_mail('', body , 'fastdcomga@gmail.com',
+        #           ['fastdcomga@gmail.com'], fail_silently=False)
+        serializer.save()
+
+    else:
+        return Response('serializer not valid')
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def ManufacturingSignUpEmail(request):
+    serializer = ManufacturingSignUpSerializer(data=request.data)
+    data = request.data
+    fullName = data.get('fullName')
+    email = data.get('email')
+    body = 'New Sign Up \n Manufacturing \n\n ' + fullName + '\n' + email
     if serializer.is_valid():
         send_mail('SmartFarma SignUp HURRY', body, 'malingreatsdev@gmail.com',
                   ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
