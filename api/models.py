@@ -51,6 +51,7 @@ class ContactEmail(models.Model):
     companyName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phoneNumber = models.CharField(max_length=250, blank=True, null=True)
+    # phoneNumber = models.CharField(max_length=250, blank=True, null=True)
     message = models.TextField(blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
