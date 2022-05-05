@@ -1,10 +1,23 @@
+from dataclasses import field
 from rest_framework import serializers
-from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation, ManufacturingSignUp, HealthcareSignUp
+from .models import AgricultureSignUp, RetailSignUp, EducationSignUp, ContactEmail, EnquiryEmail, Newsletter, Quotation, ManufacturingSignUp, HealthcareSignUp, AgricultureDomain, RetailDomain, EducationDomain, ManufacturingDomain, HealthcareDomain, TotalDomain,  TotalSignUp
+
+
+class AgricultureDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AgricultureDomain
+        fields = '__all__'
 
 
 class AgricultureSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = AgricultureSignUp
+        fields = '__all__'
+
+
+class RetailDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RetailDomain
         fields = '__all__'
 
 
@@ -14,9 +27,21 @@ class RetailSignUpSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EducationDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EducationDomain
+        fields = '__all__'
+
+
 class EducationSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = EducationSignUp
+        fields = '__all__'
+
+
+class HealthcareDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthcareDomain
         fields = '__all__'
 
 
@@ -26,9 +51,27 @@ class HealthcareSignUpSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ManufacturingDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManufacturingDomain
+        fields = '__all__'
+
+
 class ManufacturingSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManufacturingSignUp
+        fields = '__all__'
+
+
+class TotalDomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TotalDomain
+        fields = '__all__'
+
+
+class TotalSignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TotalSignUp
         fields = '__all__'
 
 
