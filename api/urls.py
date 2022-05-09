@@ -13,10 +13,10 @@ urlpatterns = [
     path('manufacturing-signup', views.ManufacturingSignUpEmail,
          name='manufacturing-signup'),
 
-    path('contact-email', views.ContactEmail, name='contact-email'),
-    path('enquiry-email', views.EnquiryEmail, name='enquiry-email'),
-    path('newsletter', views.Newsletter, name='newsletter'),
-    path('quotation', views.Quotation, name='quotation'),
+    path('contact-email', views.addContactEmail, name='contact-email'),
+    path('enquiry-email', views.addEnquiryEmail, name='enquiry-email'),
+    path('newsletter', views.addNewsletter, name='newsletter'),
+    path('quotation', views.addQuotation, name='quotation'),
 
     path('free-domains', views.getFreeDomains, name='free-domains'),
     path('add-agricdomain', views.addAgricultureDomain, name='add-agridomain'),
@@ -33,6 +33,21 @@ urlpatterns = [
     path('get-edusignup', views.getEduSignUps, name='get-edusignup'),
     path('get-manusignup', views.getManuSignUps, name='get-manusignup'),
     path('get-healthsignup', views.getHealthSignUps, name='get-healthsignup'),
+
+    path('get-agricdomain-specific/<str:pk>',
+         views.getAgriDomainSpecific, name='get-agricdomain-specific'),
+
+    path('get-totalsignups',
+         views.getTotalSignUps, name='get-totalsignups'),
+    #     path('get-totaldomains/<str:pk>',
+    #          views.getTotalDomains, name='get-totaldomains'),
+
+
+    #     path('get-enquiries', views.getEnquiryEmail, name='get-enquiries'),
+    path('get-qoutations', views.getAllQuotations, name='get-qoutations'),
+    path('get-contacts', views.getAllContacts, name='get-contacts'),
+    path('get-enquiries', views.getAllEnquiries, name='get-enquiries'),
+    path('get-newsletters', views.getAllNewsletters, name='get-newsletters'),
 
 
 ]

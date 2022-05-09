@@ -12,7 +12,7 @@ class AgricultureDomainAdmin(admin.ModelAdmin):
 class AgricultureSignUpAdmin(admin.ModelAdmin):
     search_fields = ("fullName",)
     list_display = ("fullName", "email", "domain",
-                    "domain", "timestamp", "isActive")
+                    "account", "timestamp", "isActive")
 
 
 @admin.register(RetailDomain)

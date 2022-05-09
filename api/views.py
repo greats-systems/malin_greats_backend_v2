@@ -78,7 +78,8 @@ def AgricSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
-    domainName = domains[1].name
+    print(domains)
+    domainName = domains[0].name
     fullDomain = AgricultureDomain.objects.get(name=domainName)
 
     signUps = AgricultureSignUp.objects.filter(email=email)
@@ -100,6 +101,9 @@ def AgricSignUpEmail(request):
             qs.domain = fullDomain
             qs.save()
 
+            fullDomain.isOccupied = True
+            fullDomain.save()
+
             query = TotalSignUp.objects.get(id=1)
             query.agricultureTotal += 1
             query.save()
@@ -117,7 +121,7 @@ def RetailSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
-    domainName = domains[1].name
+    domainName = domains[0].name
     fullDomain = RetailDomain.objects.get(name=domainName)
 
     signUps = RetailSignUp.objects.filter(email=email)
@@ -139,6 +143,9 @@ def RetailSignUpEmail(request):
             qs.domain = fullDomain
             qs.save()
 
+            fullDomain.isOccupied = True
+            fullDomain.save()
+
             query = TotalSignUp.objects.get(id=1)
             query.retailTotal += 1
             query.save()
@@ -156,7 +163,7 @@ def EduSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
-    domainName = domains[1].name
+    domainName = domains[0].name
     fullDomain = EducationDomain.objects.get(name=domainName)
 
     signUps = EducationSignUp.objects.filter(email=email)
@@ -178,6 +185,9 @@ def EduSignUpEmail(request):
             qs.domain = fullDomain
             qs.save()
 
+            fullDomain.isOccupied = True
+            fullDomain.save()
+
             query = TotalSignUp.objects.get(id=1)
             query.educationTotal += 1
             query.save()
@@ -195,7 +205,7 @@ def HealthcareSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
-    domainName = domains[1].name
+    domainName = domains[0].name
     fullDomain = HealthcareDomain.objects.get(name=domainName)
 
     signUps = HealthcareSignUp.objects.filter(email=email)
@@ -217,6 +227,13 @@ def HealthcareSignUpEmail(request):
             qs.domain = fullDomain
             qs.save()
 
+            # # print("Before")
+            # print(fullDomain.isOccupied)
+            fullDomain.isOccupied = True
+            fullDomain.save()
+            # print("After")
+            # print(fullDomain.isOccupied)
+
             query = TotalSignUp.objects.get(id=1)
             query.healthcareTotal += 1
             query.save()
@@ -234,7 +251,7 @@ def ManufacturingSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
-    domainName = domains[1].name
+    domainName = domains[0].name
     fullDomain = ManufacturingDomain.objects.get(name=domainName)
 
     signUps = ManufacturingSignUp.objects.filter(email=email)
@@ -256,6 +273,9 @@ def ManufacturingSignUpEmail(request):
             qs.domain = fullDomain
             qs.save()
 
+            fullDomain.isOccupied = True
+            fullDomain.save()
+
             query = TotalSignUp.objects.get(id=1)
             query.manufacturingTotal += 1
             query.save()
@@ -266,7 +286,7 @@ def ManufacturingSignUpEmail(request):
 
 
 @api_view(['POST'])
-def ContactEmail(request):
+def addContactEmail(request):
     serializer = ContactEmailSerializer(data=request.data)
     data = request.data
     fullName = data.get('fullName')
@@ -288,7 +308,7 @@ def ContactEmail(request):
 
 
 @api_view(['POST'])
-def EnquiryEmail(request):
+def addEnquiryEmail(request):
     serializer = EnquiryEmailSerializer(data=request.data)
     data = request.data
     fullName = data.get('fullName')
@@ -307,7 +327,7 @@ def EnquiryEmail(request):
 
 
 @api_view(['POST'])
-def Newsletter(request):
+def addNewsletter(request):
     serializer = NewsletterSerializer(data=request.data)
     data = request.data
     email = data.get('email')
@@ -325,7 +345,7 @@ def Newsletter(request):
 
 
 @api_view(['POST'])
-def Quotation(request):
+def addQuotation(request):
     serializer = QuotationSerializer(data=request.data)
     data = request.data
     fullName = data.get('fullName')
@@ -375,4 +395,55 @@ def getManuSignUps(request):
 def getHealthSignUps(request):
     qs = HealthcareSignUp.objects.all()
     serializer = HealthcareSignUpSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAgriDomainSpecific(request, pk):
+    qs = AgricultureDomain.objects.get(pk=id)
+    serializer = AgricultureDomainSerializer(qs, many=False)
+    return Response(serializer.data)
+
+
+# Get Total SignUps
+@api_view(['GET'])
+def getTotalSignUps(request):
+    qs = TotalSignUp.objects.all()
+    serializer = TotalSignUpSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+# Get Total Domains
+@api_view(['GET'])
+def getTotalDomains(request):
+    qs = TotalDomain.objects.all()
+    serializer = TotalDomainSerializer(qs)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAllQuotations(request):
+    qs = Quotation.objects.all()
+    serializer = QuotationSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAllContacts(request):
+    qs = ContactEmail.objects.all()
+    serializer = ContactEmailSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAllNewsletters(request):
+    qs = Newsletter.objects.all()
+    serializer = NewsletterSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getAllEnquiries(request):
+    qs = EnquiryEmail.objects.all()
+    serializer = EnquiryEmailSerializer(qs, many=True)
     return Response(serializer.data)

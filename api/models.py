@@ -9,7 +9,8 @@ def upload_to(instance, filename):
 
 
 class AgricultureDomain(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True,
+                            primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     isOccupied = models.BooleanField(default=False, blank=True, null=True)
     isActive = models.BooleanField(default=True, blank=True, null=True)
@@ -36,7 +37,7 @@ class AgricultureSignUp(models.Model):
 
 
 class RetailDomain(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     isOccupied = models.BooleanField(default=False, blank=True, null=True)
     isActive = models.BooleanField(default=True, blank=True, null=True)
@@ -63,7 +64,7 @@ class RetailSignUp(models.Model):
 
 
 class EducationDomain(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     isOccupied = models.BooleanField(default=False, blank=True, null=True)
     isActive = models.BooleanField(default=True, blank=True, null=True)
@@ -90,7 +91,7 @@ class EducationSignUp(models.Model):
 
 
 class HealthcareDomain(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     isOccupied = models.BooleanField(default=False, blank=True, null=True)
     isActive = models.BooleanField(default=True, blank=True, null=True)
@@ -117,7 +118,7 @@ class HealthcareSignUp(models.Model):
 
 
 class ManufacturingDomain(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=250, blank=True, primary_key=True)
     timestamp = models.DateTimeField(default=timezone.now)
     isOccupied = models.BooleanField(default=False, blank=True, null=True)
     isActive = models.BooleanField(default=True, blank=True, null=True)
