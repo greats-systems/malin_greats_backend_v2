@@ -49,5 +49,5 @@ urlpatterns = [
     path('get-enquiries', views.getAllEnquiries, name='get-enquiries'),
     path('get-newsletters', views.getAllNewsletters, name='get-newsletters'),
 
-
+    path('script', views.TestScript, name='script'),
 ]

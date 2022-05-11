@@ -25,6 +25,7 @@ class AgricultureSignUp(models.Model):
     fullName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
+    password = models.CharField(max_length=250, blank=True, null=True)
     account = models.CharField(
         blank=True, null=True, max_length=100, default='Free')
     isActive = models.BooleanField(default=True, blank=True, null=True)
@@ -51,6 +52,7 @@ class RetailSignUp(models.Model):
         'RetailDomain', null=True, blank=True, on_delete=models.CASCADE)
     fullName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    password = models.CharField(max_length=250, blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     account = models.CharField(
         blank=True, null=True, max_length=100, default='Free')
@@ -78,6 +80,7 @@ class EducationSignUp(models.Model):
         'EducationDomain', null=True, blank=True, on_delete=models.CASCADE)
     fullName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    password = models.CharField(max_length=250, blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     account = models.CharField(
         blank=True, null=True, max_length=100, default='Free')
@@ -105,6 +108,7 @@ class HealthcareSignUp(models.Model):
         'HealthcareDomain', null=True, blank=True, on_delete=models.CASCADE)
     fullName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    password = models.CharField(max_length=250, blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     account = models.CharField(
         blank=True, null=True, max_length=100, default='Free')
@@ -132,6 +136,7 @@ class ManufacturingSignUp(models.Model):
         'ManufacturingDomain', null=True, blank=True, on_delete=models.CASCADE)
     fullName = models.CharField(max_length=250, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    password = models.CharField(max_length=250, blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     account = models.CharField(
         blank=True, null=True, max_length=100, default='Free')

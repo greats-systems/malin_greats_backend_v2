@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.core.mail import send_mail
 import datetime
+import subprocess
 
 
 from .serializers import AgricultureDomainSerializer, AgricultureSignUpSerializer, RetailSignUpSerializer, EducationSignUpSerializer, ContactEmailSerializer, EnquiryEmailSerializer, NewsletterSerializer, QuotationSerializer, HealthcareSignUpSerializer, ManufacturingSignUpSerializer, ManufacturingDomainSerializer, HealthcareDomainSerializer, EducationDomainSerializer, RetailDomainSerializer, TotalDomainSerializer, TotalSignUpSerializer
@@ -78,6 +79,7 @@ def AgricSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
+    password = data.get('password')
     print(domains)
     domainName = domains[0].name
     fullDomain = AgricultureDomain.objects.get(name=domainName)
@@ -91,6 +93,16 @@ def AgricSignUpEmail(request):
         clientBody = fullName + ' Welcome to SmartAgriculture \n' + \
             'Navigate to the link below and register your account \n\n' 'http://' + domainName
         if serializer.is_valid():
+
+            sitename = str(domainName)
+            industry = 'agriculture'
+            password = str(password)
+
+            erpnextScript = subprocess.run(
+                ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+            # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+            print("The exit code was: %d" % erpnextScript.returncode)
+
             send_mail('SmartFarma SignUp HURRY', adminBody, 'malingreatsdev@gmail.com',
                       ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
             send_mail('Malin Greats Smart Farma', clientBody, 'malingreatsdev@gmail.com',
@@ -121,6 +133,7 @@ def RetailSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
+    password = data.get('password')
     domainName = domains[0].name
     fullDomain = RetailDomain.objects.get(name=domainName)
 
@@ -133,6 +146,16 @@ def RetailSignUpEmail(request):
         clientBody = fullName + ' Welcome to SmartRetail \n' + \
             'Navigate to the link below and register your account \n\n' 'http://' + domainName
         if serializer.is_valid():
+
+            sitename = str(domainName)
+            industry = 'retail'
+            password = str(password)
+
+            erpnextScript = subprocess.run(
+                ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+            # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+            print("The exit code was: %d" % erpnextScript.returncode)
+
             send_mail('SmartRetail SignUp HURRY', adminBody, 'malingreatsdev@gmail.com',
                       ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
             send_mail('Malin Greats Smart Farma', clientBody, 'malingreatsdev@gmail.com',
@@ -163,6 +186,7 @@ def EduSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
+    password = data.get('password')
     domainName = domains[0].name
     fullDomain = EducationDomain.objects.get(name=domainName)
 
@@ -175,6 +199,16 @@ def EduSignUpEmail(request):
         clientBody = fullName + ' Welcome to SmartEducation \n' + \
             'Navigate to the link below and register your account \n\n' 'http://' + domainName
         if serializer.is_valid():
+
+            sitename = str(domainName)
+            industry = 'education'
+            password = str(password)
+
+            erpnextScript = subprocess.run(
+                ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+            # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+            print("The exit code was: %d" % erpnextScript.returncode)
+
             send_mail('SmartEducation SignUp HURRY', adminBody, 'malingreatsdev@gmail.com',
                       ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
             send_mail('Malin Greats Smart Farma', clientBody, 'malingreatsdev@gmail.com',
@@ -205,6 +239,7 @@ def HealthcareSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
+    password = data.get('password')
     domainName = domains[0].name
     fullDomain = HealthcareDomain.objects.get(name=domainName)
 
@@ -217,6 +252,16 @@ def HealthcareSignUpEmail(request):
         clientBody = fullName + ' Welcome to SmartHealthcare \n' + \
             'Navigate to the link below and register your account \n\n' 'http://' + domainName
         if serializer.is_valid():
+
+            sitename = str(domainName)
+            industry = 'healthcare'
+            password = str(password)
+
+            erpnextScript = subprocess.run(
+                ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+            # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+            print("The exit code was: %d" % erpnextScript.returncode)
+
             send_mail('SmartFarma SignUp HURRY', adminBody, 'malingreatsdev@gmail.com',
                       ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
             send_mail('Malin Greats Smart Farma', clientBody, 'malingreatsdev@gmail.com',
@@ -251,6 +296,7 @@ def ManufacturingSignUpEmail(request):
     data = request.data
     fullName = data.get('fullName')
     email = data.get('email')
+    password = data.get('password')
     domainName = domains[0].name
     fullDomain = ManufacturingDomain.objects.get(name=domainName)
 
@@ -263,6 +309,16 @@ def ManufacturingSignUpEmail(request):
         clientBody = fullName + ' Welcome to SmartManufacturing \n' + \
             'Navigate to the link below and register your account \n\n' 'http://' + domainName
         if serializer.is_valid():
+
+            sitename = str(domainName)
+            industry = 'manufacturing'
+            password = str(password)
+
+            erpnextScript = subprocess.run(
+                ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+            # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+            print("The exit code was: %d" % erpnextScript.returncode)
+
             send_mail('SmartFarma SignUp HURRY', adminBody, 'malingreatsdev@gmail.com',
                       ['malingreatsdev@gmail.com', 'benjaminnyakambangwe@gmail.com'], fail_silently=False)
             send_mail('Malin Greats Smart Farma', clientBody, 'malingreatsdev@gmail.com',
@@ -446,4 +502,21 @@ def getAllNewsletters(request):
 def getAllEnquiries(request):
     qs = EnquiryEmail.objects.all()
     serializer = EnquiryEmailSerializer(qs, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def TestScript(request):
+    qs = AgricultureSignUp.objects.all()
+    serializer = AgricultureSignUpSerializer(qs, many=True)
+    # erpnextScript = subprocess.run(["cd", "/home/ben/testBench1"])
+    # erpnextScript2 = subprocess.run(["pwd"])
+    sitename = 'djangosite2'
+    industry = 'education'
+    password = '12345678ninE!'
+
+    erpnextScript = subprocess.run(
+        ["./lazyben.sh", industry, sitename, password], cwd="/home/ben")
+    # erpnextScript = subprocess.run("./lazyben.sh %s %s %s" %(industry, sitename, password), cwd="/home/ben")
+    print("The exit code was: %d" % erpnextScript.returncode)
     return Response(serializer.data)
